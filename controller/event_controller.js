@@ -1,4 +1,4 @@
-
+import {EventModel} from "../models/event_model.js"
 
 // Function to add a new event to the database
 export const addEvent = async (req, res, next) => {
