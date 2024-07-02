@@ -4,11 +4,11 @@ import { localUploads } from "../middleware/upload.js";
 
 const eventRouter = Router();
 
-eventRouter.post('/events', localUploads.single('image'), addEvent);
+eventRouter.post('/events', localUploads.single('flier'), addEvent);
 
-eventRouter.patch('/events/id:', updateEvent);
+eventRouter.patch('/events/:id', updateEvent);
 
-eventRouter.delete('/events/id:', deleteEvent);
+eventRouter.delete('/events/:id', deleteEvent);
 
 
 

@@ -1,13 +1,22 @@
 import express, { Router } from "express";
 import eventRouter from "./routes/event_route.js";
+import 'dotenv/config';
+import { dbConnection } from "./config/db.js";
+import mongoose from "mongoose";
+
 
 const app = express()
 
 
 
 app.use(express.json())
+app.use(express.static('uploads'))
+dbConnection();
 
-app.use = (eventRouter)
+
+// Routes
+app.use(eventRouter)
+
 
 
 
