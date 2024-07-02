@@ -1,10 +1,13 @@
 import {EventModel} from "../models/event_model.js"
 
-// Function to add a new event to the database
+// Function to post a new event to the database
 export const addEvent = async (req, res, next) => {
     try {
         console.log("request", req.body);
-        const newEvent = await EventModel.create(req.body);
+        const newEvent = await EventModel.create({
+            ...req.body,
+            image: req.file.filename
+        });
         res.status(200).send(newEvent)
     } catch (error) {
         next(error);
