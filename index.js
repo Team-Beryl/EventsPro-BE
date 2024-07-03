@@ -3,6 +3,7 @@ import eventRouter from "./routes/event_route.js";
 import 'dotenv/config';
 import { dbConnection } from "./config/db.js";
 import mongoose from "mongoose";
+import categoryRouter from "./routes/category_route.js";
 
 
 const app = express()
@@ -15,7 +16,8 @@ dbConnection();
 
 
 // Routes
-app.use(eventRouter)
+app.use(eventRouter);
+app.use(categoryRouter);
 
 
 
