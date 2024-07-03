@@ -9,4 +9,4 @@ export const remoteUpload = multer({
     })
 })
 
-console.log('SAVEFILESORG_API_KEY:', process.env.SAVEFILESORG_API_KEY);
+// console.log('SAVEFILESORG_API_KEY:', process.env.SAVEFILESORG_API_KEY);
