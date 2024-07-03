@@ -1,4 +1,4 @@
-import {CategoryModel} from "../models/event_model.js"
+import {CategoryModel} from "../models/category_model.js"
 
 // Function to post a new category to the database
 export const addCategory = async (req, res, next) => {
