@@ -4,7 +4,7 @@ import { localUploads } from "../middleware/upload.js";
 
 const categoryRouter = Router();
 
-categoryRouter.post('/categories', remoteUpload.single('flier'), addCategory);
+categoryRouter.post('/categories', localUploads.single('flier'), addCategory);
 
 categoryRouter.get('/categories', getCategory);
 
