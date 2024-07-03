@@ -49,4 +49,14 @@ export const getEvent = async (req, res, next)=>{
     }
 }
 
+//Function to display a single event by id
+export const getAnEvent = async (req, res, next) => {
+    try {
+       const getOneEvent = await EventModel.findById(req.params.id)
+       res.json(getOneEvent)
+    } catch (error) {
+       next(error);
+    }
+ }
+
 
