@@ -2,7 +2,7 @@ import { Router } from "express";
 import { addCategory, getCategory, getACategory, deleteCategory } from "../controller/category_controlller.js";
 import { remoteUpload } from "../middleware/upload.js";
 import 'dotenv/config';
-// import { localUploads } from "../middleware/upload.js";
+
 
 const categoryRouter = Router();
 
@@ -16,3 +16,4 @@ categoryRouter.delete('/categories/:id', deleteCategory);
 
 
 export default categoryRouter;
+

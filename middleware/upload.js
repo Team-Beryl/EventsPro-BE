@@ -1,7 +1,6 @@
 import multer from "multer";
 import { multerSaveFilesOrg } from "multer-savefilesorg";
-
-export const localUploads = multer({ des: 'uploads' });
+import 'dotenv/config'
 
 export const remoteUpload = multer({
     storage: multerSaveFilesOrg({
@@ -9,3 +8,5 @@ export const remoteUpload = multer({
         relativePath: '/uploads/*'
     })
 })
+
+console.log('SAVEFILESORG_API_KEY:', process.env.SAVEFILESORG_API_KEY);
