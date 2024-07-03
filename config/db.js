@@ -5,6 +5,6 @@ const connectionString = process.env.MONGO_URL;
 
 export const dbConnection = () => {
     mongoose.connect(connectionString).then(() => {
-        console.log('Databse is connected')
+        console.log('Database is connected')
     })
 }
