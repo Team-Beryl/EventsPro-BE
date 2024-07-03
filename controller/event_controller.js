@@ -3,7 +3,6 @@ import {EventModel} from "../models/event_model.js"
 // Function to post a new event to the database
 export const addEvent = async (req, res, next) => {
     try {
-        console.log("request", req.body);
         const newEvent = await EventModel.create({
             ...req.body,
             flier: req.file.filename
@@ -33,4 +32,21 @@ export const deleteEvent = async(req, res, next)=>{
         next(error)
     }
 }
+
+//Function to display all events
+export const getEvent = async (req, res, next)=>{
+    try {
+      const dateQuery = req.query.date  
+      if(dateQuery){
+        const addData = await EventModel.find({date: dateQuery});
+        res.status(201).send(addData)
+      }else{
+        const addData = await EventModel.find();
+        res.status(200).send(addData)
+      }
+    } catch (error) {
+        
+    }
+}
+
 
