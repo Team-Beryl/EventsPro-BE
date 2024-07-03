@@ -1,19 +1,22 @@
-import express, { Router } from "express";
+import express from "express";
+import cors from 'cors';
 import eventRouter from "./routes/event_route.js";
 import 'dotenv/config';
 import { dbConnection } from "./config/db.js";
 import mongoose from "mongoose";
 import categoryRouter from "./routes/category_route.js";
-// import expressOasGenerator from "express-oas-generator";
-import cors from 'cors';
+import expressOasGenerator from "express-oas-generator";
+
+
+
 
 
 const app = express()
-// expressOasGenerator.handleRequests(app, {
-//     alwaysServerDocs: true,
-//     tags: ['categories', 'events'],
-//     mongooseModels: mongoose.modelNames(),
-// })
+expressOasGenerator.handleResponses(app, {
+    alwaysServeDocs: true,
+    tags: ['categories', 'events'],
+    mongooseModels: mongoose.modelNames(),
+});
 
 
 app.use(cors());
@@ -25,6 +28,9 @@ dbConnection();
 // Routes
 app.use(eventRouter);
 app.use(categoryRouter);
+expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs/'));
+
 
 
 

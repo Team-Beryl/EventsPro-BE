@@ -23,6 +23,7 @@ export const updateEvent = async (req, res, next) => {
     }
 }
 
+
 //Function to delete an event
 export const deleteEvent = async (req, res, next) => {
     try {
