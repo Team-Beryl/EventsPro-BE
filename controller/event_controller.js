@@ -45,7 +45,7 @@ export const getEvent = async (req, res, next) => {
           filter = "{}", 
           sort = "{}",
           fields = "{}",
-          limit = 10, 
+          limit = 15, 
           skip = 0, 
           } = req.query;
        const allEvents = await EventModel
@@ -69,6 +69,8 @@ export const getAnEvent = async (req, res, next) => {
         next(error);
     }
 }
+
+
 
 
 //  const dateQuery = req.query.date

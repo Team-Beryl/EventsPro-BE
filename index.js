@@ -4,7 +4,6 @@ import eventRouter from "./routes/event_route.js";
 import 'dotenv/config';
 import { dbConnection } from "./config/db.js";
 import mongoose from "mongoose";
-import categoryRouter from "./routes/category_route.js";
 import expressOasGenerator from "express-oas-generator";
 
 
@@ -27,7 +26,6 @@ dbConnection();
 
 // Routes
 app.use(eventRouter);
-app.use(categoryRouter);
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
 
