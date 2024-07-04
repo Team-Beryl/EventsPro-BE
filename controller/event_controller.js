@@ -16,8 +16,12 @@ export const addEvent = async (req, res, next) => {
 //Function to update an event
 export const updateEvent = async (req, res, next) => {
     try {
-        const updatedEvent = await EventModel.findByIdAndUpdate(req.params.id, req.body);
-        res.status(201).send(updatedEvent);
+        const updatedEvent = await EventModel.findByIdAndUpdate(
+            req.params.id,
+            { ...req.body, flier: req.file.filename },
+            { new: true }
+        );
+        res.status(200).send(updatedEvent);
     } catch (error) {
         next(error);
     }
@@ -35,29 +39,44 @@ export const deleteEvent = async (req, res, next) => {
 }
 
 //Function to display all events
-export const getEvent = async (req, res, next)=>{
+export const getEvent = async (req, res, next) => {
     try {
-      const dateQuery = req.query.date  
-      if(dateQuery){
-        const addData = await EventModel.find({date: dateQuery});
-        res.status(201).send(addData)
-      }else{
-        const addData = await EventModel.find();
-        res.status(200).send(addData)
-      }
+        const {
+            filter = "{}",
+            sort = "{}",
+            fields = "{}",
+            limit = 10,
+            skip = 0,
+        } = req.query;
+
+        const allEvents = await EventModel
+            .find(JSON.parse(filter))
+            .sort(JSON.parse.sort)
+            .select(JSON.parse(fields))
+            .limit(limit)
+            .skip(skip);
+        res.json(allEvents);
     } catch (error) {
-        
+
     }
 }
 
 //Function to display a single event by id
 export const getAnEvent = async (req, res, next) => {
     try {
-       const getOneEvent = await EventModel.findById(req.params.id)
-       res.json(getOneEvent)
+        const getOneEvent = await EventModel.findById(req.params.id)
+        res.json(getOneEvent)
     } catch (error) {
-       next(error);
+        next(error);
     }
- }
+}
 
 
+//  const dateQuery = req.query.date
+//   if(dateQuery){
+//     const addData = await EventModel.find({date: dateQuery});
+//     res.status(201).send(addData)
+//   }else{
+//     const addData = await EventModel.find();
+//     res.status(200).send(addData)
+//   }

@@ -9,7 +9,7 @@ const eventRouter = Router();
 eventRouter.post('/events', remoteUpload.single('flier'), addEvent);
 
 
-eventRouter.patch('/events/:id', updateEvent);
+eventRouter.patch('/events/:id', remoteUpload.single('flier'), updateEvent);
 
 eventRouter.delete('/events/:id', deleteEvent);
 
