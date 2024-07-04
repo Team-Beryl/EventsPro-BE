@@ -18,7 +18,7 @@ export const updateEvent = async (req, res, next) => {
     try {
         const updatedEvent = await EventModel.findByIdAndUpdate(
             req.params.id,
-            { ...req.body, flier: req.file.filename },
+            { ...req.body, flier: req?.file?.filename },
             { new: true }
         );
         res.status(200).send(updatedEvent);
@@ -41,26 +41,25 @@ export const deleteEvent = async (req, res, next) => {
 //Function to display all events
 export const getEvent = async (req, res, next) => {
     try {
-        const {
-            filter = "{}",
-            sort = "{}",
-            fields = "{}",
-            limit = 10,
-            skip = 0,
-        } = req.query;
-
-        const allEvents = await EventModel
-            .find(JSON.parse(filter))
-            .sort(JSON.parse.sort)
-            .select(JSON.parse(fields))
-            .limit(limit)
-            .skip(skip);
-        res.json(allEvents);
+       const { 
+          filter = "{}", 
+          sort = "{}",
+          fields = "{}",
+          limit = 10, 
+          skip = 0, 
+          } = req.query;
+       const allEvents = await EventModel
+          .find(JSON.parse(filter))
+          .sort(JSON.parse.sort)
+          .select(JSON.parse(fields))
+          .limit(limit)
+          .skip(skip);
+       res.json(allEvents);
     } catch (error) {
-
+       next(error);
     }
-}
-
+ }
+ 
 //Function to display a single event by id
 export const getAnEvent = async (req, res, next) => {
     try {

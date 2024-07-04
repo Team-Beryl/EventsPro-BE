@@ -1,13 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
 const eventSchema = new Schema({
     name: { type: String, required: true },
+    categoryId: { type: Types.ObjectId, ref:'Category', required: true },
     date: { type: Date, required: true },
-    // ticket: {type:String, enum:["regular", "VIP", "VVIP"]},
+    description:{type:String},
     price:{type:String},
-    startAt: { type: String, required: true },
-    endAt: { type: String, required: true },
+    startTime: { type: String, required: true },
+    endTime: { type: String, required: true },
     location: { type: String, required: true },
     flier: { type: String }
 }, {
